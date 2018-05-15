@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {getListData} from '../actions';
 
@@ -13,9 +14,15 @@ class List extends Component {
             return <li className="collection-item" key={index}>{item.title}</li>
         });
         return(
-            <ul className="collection">
-                {listItems}
-            </ul>
+            <div>
+                <h1 className="center">To do list</h1>
+                <div className="row right-align">
+                 <Link className="btn blue-grey" to="add-item">Add item</Link>
+                </div>
+                <ul className="collection">
+                    {listItems}
+                </ul>
+            </div>
         )
     }
 }
