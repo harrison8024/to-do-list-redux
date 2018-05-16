@@ -6,12 +6,15 @@ import {addToDoItem} from '../actions'
 
 class AddItem extends Component{
     async handleAddItems(values){
-        console.log('Form Values:', values);
-        await this.props.addToDoItem(values);
+        try{
+            await this.props.addToDoItem(values);
         this.props.history.push("/");
+        }catch(err){
+            console.log(err.message);
+        }
+       
     }
     renderInput(props){
-        console.log('Render Input:',props)
         return(
             <div>
                 <label>{props.label}</label>
