@@ -1,17 +1,18 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {getListData} from '../actions';
+import {getListData, getSingleItem} from '../actions';
 
 class List extends Component {
     componentDidMount(){
         this.props.getListData();
     }
     render(){
-        console.log('list props:', this.props);
         const {listData} = this.props;
         const listItems = listData.map((item, index)=>{
-            return <li className="collection-item" key={index}>{item.title}</li>
+            return (<li className="collection-item" key={item._id}>
+                <Link to={`/item/${item._id}`}>{item.title}</Link>
+            </li>);
         });
         return(
             <div>
