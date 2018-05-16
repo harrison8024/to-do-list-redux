@@ -7,7 +7,6 @@ import SingleItem from "./single_item";
 
 const App = () => (
     <div className="container">
-        <h1 className="center">TO DO LIST</h1>
         <Route exact path="/" component={List}/>
         <Route path="/add-item" component={AddItem}/>
         <Route path="/item/:id" component={SingleItem}/>
