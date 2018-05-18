@@ -1,15 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getSingleItem} from '../actions';
+import {getSingleItem, toggleItemComplete} from '../actions';
 import {Link} from 'react-router-dom';
 
 class SingleItem extends Component{
     componentDidMount(){
         this.props.getSingleItem(this.props.match.params.id);
     }
+
+    handleToggleComplete(){
+        this.props.toggleItemComplete(this.props.match.params.id);
+    }
     render(){
         console.log('Single Porps:', this.props);
-        const {title, details} = this.props.item;
+        const {title, details, complete} = this.props.item;
         return (
             <div>
                 <h2 className="center" >To Do Items</h2>
@@ -18,6 +22,13 @@ class SingleItem extends Component{
                 </div>
                 <h4>{title}</h4>
                 <p>{details}</p>
+                <p> Item is {complete ? 'completed' : 'incomplete'}</p>
+                <button 
+                    onClick={this.handleToggleComplete.bind(this)} 
+                    className={`btn ${complete ? 'yellow' : 'green' }`}
+                >
+                    {complete ? 'Make Incomplete' : 'Complete Item'}
+                </button>
             </div>
         )
     }
@@ -28,4 +39,7 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, {getSingleItem})(SingleItem);
+export default connect(mapStateToProps, {
+    getSingleItem,
+    toggleItemComplete
+})(SingleItem);

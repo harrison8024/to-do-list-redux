@@ -13,6 +13,15 @@ export function getListData(){
     }
 }
 
+export function toggleItemComplete(id){
+    const response = axios.put(`${BASE_URL}/todos/${id + API_KEY}`);
+
+    return {
+        type: types.TOGGLE_COMPLETE,
+        payload: response
+    }
+}
+
 export function addToDoItem(item){
     const response = axios.post(`${BASE_URL}/todos${API_KEY}`, item);
 
